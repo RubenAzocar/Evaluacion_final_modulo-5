@@ -6,13 +6,13 @@
     <meta name="description" content="Evaluación Final Módulo 5 - Modelado y Consultas SQL con PostgreSQL">
     <meta name="author" content="Curso Fullstack - Talento Digital">
     <title>Evaluación Final Módulo 5 - Bases de Datos Relacionales</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -110,7 +110,7 @@ proyecto/
 
                 <div class="section">
                     <h2><i class="bi bi-journal-code"></i> Contenido de la Evaluación</h2>
-                    
+
                     <div class="card">
                         <h4>Parte 1: Consultas con JOIN</h4>
                         <ul>
@@ -135,7 +135,7 @@ proyecto/
             <div id="diagrama" class="tab-content">
                 <div class="section">
                     <h2><i class="bi bi-diagram-3"></i> Diagrama Entidad-Relación</h2>
-                    
+
                     <div class="alert alert-info">
                         <strong><i class="bi bi-info-circle"></i> Cardinalidad:</strong> Relación muchos a muchos (N:M) entre ACTORES y TELESERIES mediante la tabla intermedia REPARTO_ACTORES
                     </div>
@@ -250,10 +250,10 @@ proyecto/
             <div id="parte1" class="tab-content">
                 <div class="section">
                     <h2><i class="bi bi-link-45deg"></i> Parte 1: Consultas con JOIN</h2>
-                    
+
                     <h3>Consulta 1: Actores en Ambas Teleseries</h3>
                     <p>Obtener todos los actores que participaron en ambas teleseries, mostrando los sueldos individuales y la suma total.</p>
-                    
+
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode('query1-code')">
                             <i class="bi bi-clipboard"></i> Copiar
@@ -275,7 +275,7 @@ proyecto/
 
                     <h3>Consulta 2: Actores Exclusivos de "Soltera Otra Vez"</h3>
                     <p>Obtener actores que solo participaron en "Soltera Otra Vez" con sueldo mayor a 90.</p>
-                    
+
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode('query2-code')">
                             <i class="bi bi-clipboard"></i> Copiar
@@ -299,7 +299,7 @@ proyecto/
 
                     <h3>Consulta 3: Actores con Sueldo Bajo en Una Sola Teleserie</h3>
                     <p>Obtener actores con sueldo inferior a 85 que actuaron solo en una de las teleseries.</p>
-                    
+
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode('query3-code')">
                             <i class="bi bi-clipboard"></i> Copiar
@@ -329,13 +329,13 @@ proyecto/
             <div id="parte2" class="tab-content">
                 <div class="section">
                     <h2><i class="bi bi-server"></i> Parte 2: Modelo Normalizado</h2>
-                    
+
                     <div class="alert alert-success">
                         <strong><i class="bi bi-check-circle"></i> Normalización completada:</strong> Se creó un modelo relacional que elimina la redundancia de datos y permite una gestión eficiente de la relación muchos a muchos entre actores y teleseries.
                     </div>
 
                     <h3>1. Creación de Tablas</h3>
-                    
+
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode('create-tables')">
                             <i class="bi bi-clipboard"></i> Copiar
@@ -374,7 +374,7 @@ proyecto/
 
                     <h3>2. Consulta sobre el Modelo Normalizado</h3>
                     <p>Mostrar todas las teleseries y sus actores protagónicos con información completa.</p>
-                    
+
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode('query4-code')">
                             <i class="bi bi-clipboard"></i> Copiar
@@ -418,7 +418,7 @@ proyecto/
             <div id="evidencias" class="tab-content">
                 <div class="section">
                     <h2><i class="bi bi-camera-fill"></i> Evidencias del Desarrollo</h2>
-                    
+
                     <div class="alert alert-info">
                         <strong><i class="bi bi-info-circle"></i> Nota:</strong> Las capturas de pantalla demuestran la ejecución exitosa de las consultas SQL en PostgreSQL.
                     </div>
@@ -466,23 +466,23 @@ proyecto/
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="assets/js/query-executor.js"></script>
-    
+
     <script>
         function showTab(tabName) {
             // Ocultar todos los tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-            
+
             // Desactivar todos los botones
             const buttons = document.querySelectorAll('.nav-tabs button');
             buttons.forEach(btn => btn.classList.remove('active'));
-            
+
             // Mostrar el tab seleccionado
             document.getElementById(tabName).classList.add('active');
-            
+
             // Activar el botón correspondiente
             event.target.classList.add('active');
         }
@@ -490,13 +490,13 @@ proyecto/
         function copyCode(elementId) {
             const codeElement = document.getElementById(elementId);
             const text = codeElement.textContent;
-            
+
             navigator.clipboard.writeText(text).then(() => {
                 const button = event.target;
                 const originalHTML = button.innerHTML;
                 button.innerHTML = '<i class="bi bi-check"></i> Copiado';
                 button.style.background = '#28a745';
-                
+
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
                     button.style.background = '';
