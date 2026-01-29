@@ -14,7 +14,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #fff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5fd1 0%, #5a3380 100%);
     padding: 20px;
     min-height: 100vh;
 }
@@ -31,7 +31,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5fd1 0%, #5a3380 100%);
     color: #ffffff;
     padding: 40px;
     text-align: center;
@@ -53,7 +53,7 @@ header p {
     background: #f8f9fa;
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #4a5fd1;
     padding: 0 20px;
 }
 
@@ -71,13 +71,13 @@ header p {
 }
 
 .nav-tabs button:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background: #e8eaf5;
+    color: #1e2a5f;
 }
 
 .nav-tabs button.active {
-    color: #667eea;
-    border-bottom-color: #667eea;
+    color: #1e2a5f;
+    border-bottom-color: #4a5fd1;
     background: white;
 }
 
@@ -227,7 +227,7 @@ table {
 }
 
 thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5fd1 0%, #5a3380 100%);
     color: #ffffff;
 }
 
@@ -287,12 +287,12 @@ tbody tr:last-child td {
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5fd1 0%, #5a3380 100%);
     color: #ffffff;
     padding: 30px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(74, 95, 209, 0.3);
 }
 
 .stat-card h3 {
@@ -401,7 +401,7 @@ tbody tr:last-child td {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #667eea;
+    background: #4a5fd1;
     color: #ffffff;
     border: none;
     padding: 8px 16px;
@@ -412,12 +412,12 @@ tbody tr:last-child td {
 }
 
 .copy-btn:hover {
-    background: #764ba2;
+    background: #5a3380;
     transform: translateY(-2px);
 }
 
 .execute-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5fd1 0%, #5a3380 100%);
     color: white;
     border: none;
     padding: 12px 30px;
@@ -427,7 +427,7 @@ tbody tr:last-child td {
     font-weight: 600;
     transition: all 0.3s;
     margin: 15px 0;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(74, 95, 209, 0.3);
 }
 
 .execute-btn:hover {
