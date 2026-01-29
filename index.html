@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Evaluación Final Módulo 5 - Modelado y Consultas SQL con PostgreSQL">
+    <meta name="author" content="Curso Fullstack - Talento Digital">
+    <title>Evaluación Final Módulo 5 - Bases de Datos Relacionales</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="bi bi-bar-chart-fill"></i> Evaluación Final - Módulo 5</h1>
+            <p>Modelado y Consultas SQL con PostgreSQL - Gestión de Teleseries</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="active" onclick="showTab('resumen')">
+                <i class="bi bi-clipboard-check"></i> Resumen
+            </button>
+            <button onclick="showTab('diagrama')">
+                <i class="bi bi-diagram-3"></i> Diagrama ER
+            </button>
+            <button onclick="showTab('datos')">
+                <i class="bi bi-database"></i> Datos Iniciales
+            </button>
+            <button onclick="showTab('parte1')">
+                <i class="bi bi-link-45deg"></i> Parte 1: JOINs
+            </button>
+            <button onclick="showTab('parte2')">
+                <i class="bi bi-server"></i> Parte 2: Modelo ER
+            </button>
+            <button onclick="showTab('evidencias')">
+                <i class="bi bi-camera"></i> Evidencias
+            </button>
+        </nav>
+
+        <div class="content">
+            <!-- TAB: RESUMEN -->
+            <div id="resumen" class="tab-content active">
+                <div class="section">
+                    <h2><i class="bi bi-info-circle"></i> Descripción del Proyecto</h2>
+                    <p>Evaluación final del <strong>Módulo 5</strong> del curso Fullstack de Talento Digital, enfocada en bases de datos relacionales con PostgreSQL. El proyecto trabaja con datos de dos teleseries chilenas: <span class="highlight">"Soltera Otra Vez"</span> y <span class="highlight">"Papi Ricky"</span>.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="stat-card">
+                        <h3>2</h3>
+                        <p>Teleseries</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>30</h3>
+                        <p>Actores Totales</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>3</h3>
+                        <p>Tablas Normalizadas</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="bi bi-trophy"></i> Objetivos Cumplidos</h2>
+                    <div class="card">
+                        <h4>Competencias Demostradas</h4>
+                        <ul>
+                            <li>Consultas SQL complejas con diferentes tipos de JOIN</li>
+                            <li>Diseño e implementación de modelos entidad-relación</li>
+                            <li>Normalización de bases de datos (eliminación de redundancias)</li>
+                            <li>Operaciones CRUD (Create, Read, Update, Delete)</li>
+                            <li>Gestión de relaciones muchos a muchos (N:M)</li>
+                            <li>Uso de constraints y claves foráneas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="bi bi-folder-fill"></i> Estructura del Proyecto</h2>
+                    <div class="card">
+                        <pre style="background: #f8f9fa; color: #333;">
+proyecto/
+├── index.html                             # Portafolio web interactivo
+├── assets/
+│   ├── css/
+│   │   └── styles.css                     # Estilos personalizados
+│   ├── js/
+│   │   └── query-executor.js              # Motor de ejecución
+│   └── img/
+│       └── diagrama.svg                   # Diagrama ER visual
+├── sql/
+│   ├── complemento evaluacion módulo 5.sql
+│   ├── Parte_1_Join.sql
+│   └── Parte_2_modelo_entidad_relacion.sql
+├── ScreenShots/
+│   ├── Parte 1_ Joints/
+│   └── Parte_2_-modelo_entidad_relacion/
+├── diagrama.md                            # Documentación del diagrama
+└── README.md                              # Documentación principal
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="bi bi-journal-code"></i> Contenido de la Evaluación</h2>
+                    
+                    <div class="card">
+                        <h4>Parte 1: Consultas con JOIN</h4>
+                        <ul>
+                            <li><strong>Consulta 1:</strong> Actores que participaron en ambas teleseries con suma de sueldos</li>
+                            <li><strong>Consulta 2:</strong> Actores exclusivos de "Soltera Otra Vez" con sueldo mayor a 90</li>
+                            <li><strong>Consulta 3:</strong> Actores con sueldo inferior a 85 que actuaron solo en una teleserie</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Parte 2: Modelo Entidad-Relación</h4>
+                        <ul>
+                            <li><strong>Tabla actores:</strong> Almacena información de los actores (id_actor, nombre)</li>
+                            <li><strong>Tabla teleseries:</strong> Información de las teleseries (id_teleserie, nombre, tipo_medicion)</li>
+                            <li><strong>Tabla reparto_actores:</strong> Relación N:M entre actores y teleseries con atributos adicionales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: DIAGRAMA ER -->
+            <div id="diagrama" class="tab-content">
+                <div class="section">
+                    <h2><i class="bi bi-diagram-3"></i> Diagrama Entidad-Relación</h2>
+                    
+                    <div class="alert alert-info">
+                        <strong><i class="bi bi-info-circle"></i> Cardinalidad:</strong> Relación muchos a muchos (N:M) entre ACTORES y TELESERIES mediante la tabla intermedia REPARTO_ACTORES
+                    </div>
+
+                    <div class="diagram-container">
+                        <img src="assets/img/diagrama.svg" alt="Diagrama Entidad-Relación" class="img-fluid">
+                    </div>
+
+                    <div class="entity-list">
+                        <div class="entity-card">
+                            <h4><i class="bi bi-people-fill"></i> ACTORES</h4>
+                            <ul>
+                                <li>🔑 id_actor (PK, SERIAL)</li>
+                                <li>📝 nombre (VARCHAR, UNIQUE)</li>
+                            </ul>
+                        </div>
+
+                        <div class="entity-card">
+                            <h4><i class="bi bi-link-45deg"></i> REPARTO_ACTORES</h4>
+                            <ul>
+                                <li>🔑 id_reparto (PK, SERIAL)</li>
+                                <li>🔗 id_actor (FK)</li>
+                                <li>🔗 id_teleserie (FK)</li>
+                                <li>✅ protagonico (BOOLEAN)</li>
+                                <li>💰 sueldo (INTEGER)</li>
+                                <li>🔢 cantidad (INTEGER)</li>
+                            </ul>
+                        </div>
+
+                        <div class="entity-card">
+                            <h4><i class="bi bi-tv"></i> TELESERIES</h4>
+                            <ul>
+                                <li>🔑 id_teleserie (PK, SERIAL)</li>
+                                <li>📝 nombre (VARCHAR, UNIQUE)</li>
+                                <li>📊 tipo_medicion (VARCHAR)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4>Características del Modelo</h4>
+                        <ul>
+                            <li>Eliminación de redundancia mediante normalización</li>
+                            <li>Un actor puede participar en múltiples teleseries</li>
+                            <li>Una teleserie puede tener múltiples actores</li>
+                            <li>Constraint UNIQUE evita duplicados (mismo actor en misma teleserie)</li>
+                            <li>Cascada en eliminaciones para mantener integridad referencial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: DATOS INICIALES -->
+            <div id="datos" class="tab-content">
+                <div class="section">
+                    <h2><i class="bi bi-database-fill"></i> Datos Iniciales</h2>
+                    <p>Tablas originales con información de ambas teleseries.</p>
+
+                    <h3>Tabla: reparto_soltera_otra_vez</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('code-soltera')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="code-soltera"><span class="sql-comment">-- Estructura de la tabla Soltera Otra Vez</span>
+<span class="sql-keyword">DROP TABLE IF EXISTS</span> reparto_soltera_otra_vez;
+<span class="sql-keyword">CREATE TABLE</span> reparto_soltera_otra_vez (
+    nombre <span class="sql-keyword">VARCHAR</span>(255) <span class="sql-keyword">NOT NULL</span>,
+    temporadas <span class="sql-keyword">INTEGER</span>,
+    protagonico <span class="sql-keyword">BOOLEAN</span>,
+    sueldo <span class="sql-keyword">INTEGER</span>,
+    <span class="sql-keyword">PRIMARY KEY</span> (nombre)
+);
+
+<span class="sql-comment">-- Datos (19 actores)</span>
+<span class="sql-keyword">INSERT INTO</span> reparto_soltera_otra_vez <span class="sql-keyword">VALUES</span>
+(<span class="sql-string">'Paz Bascuñán'</span>, 3, true, 100),
+(<span class="sql-string">'Pablo Macaya'</span>, 3, true, 100),
+(<span class="sql-string">'Cristián Arriagada'</span>, 3, true, 95),
+<span class="sql-comment">-- ... (16 actores más)</span></pre>
+                    </div>
+
+                    <h3>Tabla: reparto_papi_ricky</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('code-papi')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="code-papi"><span class="sql-comment">-- Estructura de la tabla Papi Ricky</span>
+<span class="sql-keyword">DROP TABLE IF EXISTS</span> reparto_papi_ricky;
+<span class="sql-keyword">CREATE TABLE</span> reparto_papi_ricky (
+    nombre <span class="sql-keyword">VARCHAR</span>(255) <span class="sql-keyword">NOT NULL</span>,
+    capitulos <span class="sql-keyword">INTEGER</span>,
+    protagonico <span class="sql-keyword">BOOLEAN</span>,
+    sueldo <span class="sql-keyword">INTEGER</span>,
+    <span class="sql-keyword">PRIMARY KEY</span> (nombre)
+);
+
+<span class="sql-comment">-- Datos (17 actores)</span>
+<span class="sql-keyword">INSERT INTO</span> reparto_papi_ricky <span class="sql-keyword">VALUES</span>
+(<span class="sql-string">'Jorge Zabaleta'</span>, 135, true, 100),
+(<span class="sql-string">'Belén Soto'</span>, 135, true, 100),
+(<span class="sql-string">'Tamara Acosta'</span>, 135, true, 100),
+<span class="sql-comment">-- ... (14 actores más)</span></pre>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong><i class="bi bi-graph-up"></i> Estadísticas:</strong> Se identificaron <strong>6 actores compartidos</strong> entre ambas teleseries: Tamara Acosta, Silvia Santelices, Alejandro Trejo, Grimanesa Jiménez, Luis Gnecco y Héctor Morales.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: PARTE 1 - JOINS -->
+            <div id="parte1" class="tab-content">
+                <div class="section">
+                    <h2><i class="bi bi-link-45deg"></i> Parte 1: Consultas con JOIN</h2>
+                    
+                    <h3>Consulta 1: Actores en Ambas Teleseries</h3>
+                    <p>Obtener todos los actores que participaron en ambas teleseries, mostrando los sueldos individuales y la suma total.</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('query1-code')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="query1-code"><span class="sql-keyword">SELECT</span>
+    s.nombre,
+    s.sueldo <span class="sql-keyword">AS</span> sueldo_soltera_otra_vez,
+    p.sueldo <span class="sql-keyword">AS</span> sueldo_papi_ricky,
+    (s.sueldo + p.sueldo) <span class="sql-keyword">AS</span> suma_sueldos
+<span class="sql-keyword">FROM</span> reparto_soltera_otra_vez s
+<span class="sql-keyword">INNER JOIN</span> reparto_papi_ricky p <span class="sql-keyword">ON</span> s.nombre = p.nombre
+<span class="sql-keyword">ORDER BY</span> s.nombre;</pre>
+                    </div>
+
+                    <button class="execute-btn" onclick="executeQuery(this, 'query1')">
+                        <i class="bi bi-play-fill"></i> Ejecutar SQL
+                    </button>
+                    <div id="results-query1" class="query-results"></div>
+
+                    <h3>Consulta 2: Actores Exclusivos de "Soltera Otra Vez"</h3>
+                    <p>Obtener actores que solo participaron en "Soltera Otra Vez" con sueldo mayor a 90.</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('query2-code')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="query2-code"><span class="sql-keyword">SELECT</span>
+    s.nombre,
+    s.temporadas,
+    s.protagonico,
+    s.sueldo
+<span class="sql-keyword">FROM</span> reparto_soltera_otra_vez s
+<span class="sql-keyword">LEFT JOIN</span> reparto_papi_ricky p <span class="sql-keyword">ON</span> s.nombre = p.nombre
+<span class="sql-keyword">WHERE</span> p.nombre <span class="sql-keyword">IS NULL</span>
+  <span class="sql-keyword">AND</span> s.sueldo > 90
+<span class="sql-keyword">ORDER BY</span> s.sueldo <span class="sql-keyword">DESC</span>;</pre>
+                    </div>
+
+                    <button class="execute-btn" onclick="executeQuery(this, 'query2')">
+                        <i class="bi bi-play-fill"></i> Ejecutar SQL
+                    </button>
+                    <div id="results-query2" class="query-results"></div>
+
+                    <h3>Consulta 3: Actores con Sueldo Bajo en Una Sola Teleserie</h3>
+                    <p>Obtener actores con sueldo inferior a 85 que actuaron solo en una de las teleseries.</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('query3-code')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="query3-code"><span class="sql-keyword">SELECT</span>
+    <span class="sql-keyword">COALESCE</span>(s.nombre, p.nombre) <span class="sql-keyword">AS</span> nombre,
+    <span class="sql-keyword">CASE</span>
+        <span class="sql-keyword">WHEN</span> s.nombre <span class="sql-keyword">IS NOT NULL AND</span> p.nombre <span class="sql-keyword">IS NULL THEN</span> <span class="sql-string">'Soltera Otra Vez'</span>
+        <span class="sql-keyword">WHEN</span> p.nombre <span class="sql-keyword">IS NOT NULL AND</span> s.nombre <span class="sql-keyword">IS NULL THEN</span> <span class="sql-string">'Papi Ricky'</span>
+    <span class="sql-keyword">END AS</span> teleserie,
+    <span class="sql-keyword">COALESCE</span>(s.sueldo, p.sueldo) <span class="sql-keyword">AS</span> sueldo
+<span class="sql-keyword">FROM</span> reparto_soltera_otra_vez s
+<span class="sql-keyword">FULL OUTER JOIN</span> reparto_papi_ricky p <span class="sql-keyword">ON</span> s.nombre = p.nombre
+<span class="sql-keyword">WHERE</span> (s.nombre <span class="sql-keyword">IS NULL OR</span> p.nombre <span class="sql-keyword">IS NULL</span>)
+  <span class="sql-keyword">AND COALESCE</span>(s.sueldo, p.sueldo) < 85
+<span class="sql-keyword">ORDER BY</span> sueldo <span class="sql-keyword">DESC</span>, nombre;</pre>
+                    </div>
+
+                    <button class="execute-btn" onclick="executeQuery(this, 'query3')">
+                        <i class="bi bi-play-fill"></i> Ejecutar SQL
+                    </button>
+                    <div id="results-query3" class="query-results"></div>
+                </div>
+            </div>
+
+            <!-- TAB: PARTE 2 - MODELO ER -->
+            <div id="parte2" class="tab-content">
+                <div class="section">
+                    <h2><i class="bi bi-server"></i> Parte 2: Modelo Normalizado</h2>
+                    
+                    <div class="alert alert-success">
+                        <strong><i class="bi bi-check-circle"></i> Normalización completada:</strong> Se creó un modelo relacional que elimina la redundancia de datos y permite una gestión eficiente de la relación muchos a muchos entre actores y teleseries.
+                    </div>
+
+                    <h3>1. Creación de Tablas</h3>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('create-tables')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="create-tables"><span class="sql-comment">-- Eliminar tablas si existen</span>
+<span class="sql-keyword">DROP TABLE IF EXISTS</span> reparto_actores;
+<span class="sql-keyword">DROP TABLE IF EXISTS</span> teleseries;
+<span class="sql-keyword">DROP TABLE IF EXISTS</span> actores;
+
+<span class="sql-comment">-- Tabla actores</span>
+<span class="sql-keyword">CREATE TABLE</span> actores (
+    id_actor <span class="sql-keyword">SERIAL PRIMARY KEY</span>,
+    nombre <span class="sql-keyword">VARCHAR</span>(255) <span class="sql-keyword">NOT NULL UNIQUE</span>
+);
+
+<span class="sql-comment">-- Tabla teleseries</span>
+<span class="sql-keyword">CREATE TABLE</span> teleseries (
+    id_teleserie <span class="sql-keyword">SERIAL PRIMARY KEY</span>,
+    nombre <span class="sql-keyword">VARCHAR</span>(255) <span class="sql-keyword">NOT NULL UNIQUE</span>,
+    tipo_medicion <span class="sql-keyword">VARCHAR</span>(50)
+);
+
+<span class="sql-comment">-- Tabla reparto_actores (relación N:M)</span>
+<span class="sql-keyword">CREATE TABLE</span> reparto_actores (
+    id_reparto <span class="sql-keyword">SERIAL PRIMARY KEY</span>,
+    id_actor <span class="sql-keyword">INTEGER NOT NULL</span>,
+    id_teleserie <span class="sql-keyword">INTEGER NOT NULL</span>,
+    protagonico <span class="sql-keyword">BOOLEAN NOT NULL</span>,
+    sueldo <span class="sql-keyword">INTEGER</span>,
+    cantidad <span class="sql-keyword">INTEGER</span>,
+    <span class="sql-keyword">FOREIGN KEY</span> (id_actor) <span class="sql-keyword">REFERENCES</span> actores(id_actor) <span class="sql-keyword">ON DELETE CASCADE</span>,
+    <span class="sql-keyword">FOREIGN KEY</span> (id_teleserie) <span class="sql-keyword">REFERENCES</span> teleseries(id_teleserie) <span class="sql-keyword">ON DELETE CASCADE</span>,
+    <span class="sql-keyword">UNIQUE</span>(id_actor, id_teleserie)
+);</pre>
+                    </div>
+
+                    <h3>2. Consulta sobre el Modelo Normalizado</h3>
+                    <p>Mostrar todas las teleseries y sus actores protagónicos con información completa.</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('query4-code')">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="query4-code"><span class="sql-keyword">SELECT</span>
+    t.nombre <span class="sql-keyword">AS</span> teleserie,
+    a.nombre <span class="sql-keyword">AS</span> actor,
+    r.sueldo,
+    r.cantidad,
+    t.tipo_medicion,
+    <span class="sql-keyword">CASE</span>
+        <span class="sql-keyword">WHEN</span> t.tipo_medicion = <span class="sql-string">'temporadas'</span> <span class="sql-keyword">THEN CONCAT</span>(r.cantidad, <span class="sql-string">' temporadas'</span>)
+        <span class="sql-keyword">WHEN</span> t.tipo_medicion = <span class="sql-string">'capitulos'</span> <span class="sql-keyword">THEN CONCAT</span>(r.cantidad, <span class="sql-string">' capítulos'</span>)
+    <span class="sql-keyword">END AS</span> participacion
+<span class="sql-keyword">FROM</span> teleseries t
+<span class="sql-keyword">INNER JOIN</span> reparto_actores r <span class="sql-keyword">ON</span> t.id_teleserie = r.id_teleserie
+<span class="sql-keyword">INNER JOIN</span> actores a <span class="sql-keyword">ON</span> r.id_actor = a.id_actor
+<span class="sql-keyword">WHERE</span> r.protagonico = <span class="sql-keyword">true</span>
+<span class="sql-keyword">ORDER BY</span> t.nombre, r.sueldo <span class="sql-keyword">DESC</span>, a.nombre;</pre>
+                    </div>
+
+                    <button class="execute-btn" onclick="executeQuery(this, 'query4')">
+                        <i class="bi bi-play-fill"></i> Ejecutar SQL
+                    </button>
+                    <div id="results-query4" class="query-results"></div>
+
+                    <div class="card">
+                        <h4>Ventajas del Modelo Normalizado</h4>
+                        <ul>
+                            <li>Eliminación de redundancia en nombres de actores</li>
+                            <li>Facilita la adición de nuevas teleseries sin duplicar actores</li>
+                            <li>Permite consultas más eficientes con JOINs</li>
+                            <li>Mantiene integridad referencial automáticamente</li>
+                            <li>Escalable para agregar más atributos a actores o teleseries</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: EVIDENCIAS -->
+            <div id="evidencias" class="tab-content">
+                <div class="section">
+                    <h2><i class="bi bi-camera-fill"></i> Evidencias del Desarrollo</h2>
+                    
+                    <div class="alert alert-info">
+                        <strong><i class="bi bi-info-circle"></i> Nota:</strong> Las capturas de pantalla demuestran la ejecución exitosa de las consultas SQL en PostgreSQL.
+                    </div>
+
+                    <div class="card">
+                        <h4><i class="bi bi-file-earmark-code"></i> Archivos del Proyecto</h4>
+                        <ul>
+                            <li><code>complemento evaluacion módulo 5.sql</code> - Datos iniciales</li>
+                            <li><code>Parte_1_Join.sql</code> - Consultas con JOIN</li>
+                            <li><code>Parte_2_modelo_entidad_relacion.sql</code> - Modelo normalizado</li>
+                            <li><code>diagrama.md</code> - Documentación del diagrama ER</li>
+                            <li><code>README.md</code> - Documentación del proyecto</li>
+                            <li><code>Link GitHub.txt</code> - Enlace al repositorio</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4><i class="bi bi-folder2-open"></i> Capturas de Pantalla</h4>
+                        <p>Las evidencias visuales se encuentran en la carpeta <code>ScreenShots/</code>:</p>
+                        <ul>
+                            <li>Parte 1_ Joints/ - Ejecución de consultas con JOIN</li>
+                            <li>Parte_2_-modelo_entidad_relacion/ - Implementación del modelo ER</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4><i class="bi bi-github"></i> Repositorio GitHub</h4>
+                        <p>Código fuente disponible en:</p>
+                        <a href="https://github.com/RubenAzocar/Evaluacion_final_modulo-5.git" target="_blank" class="btn btn-primary mt-2">
+                            <i class="bi bi-github"></i> Ver en GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><i class="bi bi-code-slash"></i> Evaluación Final - Módulo 5: Modelado y Consultas SQL</p>
+            <p>Curso Fullstack - Talento Digital | PostgreSQL</p>
+            <p style="margin-top: 10px; opacity: 0.7;">
+                Desarrollado con HTML5, CSS3, JavaScript y Bootstrap 5
+            </p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="assets/js/query-executor.js"></script>
+    
+    <script>
+        function showTab(tabName) {
+            // Ocultar todos los tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Desactivar todos los botones
+            const buttons = document.querySelectorAll('.nav-tabs button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Mostrar el tab seleccionado
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="bi bi-check"></i> Copiado';
+                button.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

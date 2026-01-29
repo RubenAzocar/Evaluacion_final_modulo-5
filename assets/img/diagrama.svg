@@ -1,0 +1,279 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <!-- Definiciones -->
+  <defs>
+    <linearGradient id="gradientHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradientTable" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="1200" height="600" fill="#f0f2f5"/>
+  
+  <!-- Título -->
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#333" text-anchor="middle">
+    Diagrama Entidad-Relación: Actores y Teleseries
+  </text>
+  
+  <!-- TABLA ACTORES -->
+  <g filter="url(#shadow)">
+    <!-- Fondo de la tabla -->
+    <rect x="50" y="120" width="300" height="320" fill="url(#gradientTable)" stroke="#667eea" stroke-width="3" rx="8"/>
+    
+    <!-- Encabezado -->
+    <rect x="50" y="120" width="300" height="50" fill="url(#gradientHeader)" rx="8"/>
+    <rect x="50" y="145" width="300" height="25" fill="url(#gradientHeader)"/>
+    
+    <text x="200" y="152" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      🎭 ACTORES
+    </text>
+    
+    <!-- Campos -->
+    <text x="70" y="200" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      🔑 id_actor
+    </text>
+    <text x="270" y="200" font-family="Courier New, monospace" font-size="12" fill="#666" text-anchor="end">
+      PK
+    </text>
+    
+    <line x1="70" y1="210" x2="330" y2="210" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="90" y="235" font-family="Courier New, monospace" font-size="13" fill="#555">
+      SERIAL
+    </text>
+    
+    <text x="90" y="255" font-family="Courier New, monospace" font-size="13" fill="#555">
+      PRIMARY KEY
+    </text>
+    
+    <line x1="70" y1="270" x2="330" y2="270" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <text x="70" y="300" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      📝 nombre
+    </text>
+    
+    <line x1="70" y1="310" x2="330" y2="310" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="90" y="335" font-family="Courier New, monospace" font-size="13" fill="#555">
+      VARCHAR(255)
+    </text>
+    
+    <text x="90" y="355" font-family="Courier New, monospace" font-size="13" fill="#555">
+      NOT NULL
+    </text>
+    
+    <text x="90" y="375" font-family="Courier New, monospace" font-size="13" fill="#555">
+      UNIQUE
+    </text>
+    
+    <!-- Cardinalidad -->
+    <text x="200" y="460" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#667eea" text-anchor="middle">
+      1
+    </text>
+  </g>
+  
+  <!-- TABLA REPARTO_ACTORES (Centro) -->
+  <g filter="url(#shadow)">
+    <!-- Fondo de la tabla -->
+    <rect x="450" y="80" width="300" height="440" fill="url(#gradientTable)" stroke="#764ba2" stroke-width="3" rx="8"/>
+    
+    <!-- Encabezado -->
+    <rect x="450" y="80" width="300" height="50" fill="url(#gradientHeader)" rx="8"/>
+    <rect x="450" y="105" width="300" height="25" fill="url(#gradientHeader)"/>
+    
+    <text x="600" y="112" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      🔗 REPARTO_ACTORES
+    </text>
+    
+    <!-- Campos -->
+    <text x="470" y="160" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      🔑 id_reparto
+    </text>
+    <text x="710" y="160" font-family="Courier New, monospace" font-size="12" fill="#666" text-anchor="end">
+      PK
+    </text>
+    
+    <line x1="470" y1="170" x2="730" y2="170" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="490" y="190" font-family="Courier New, monospace" font-size="12" fill="#555">
+      SERIAL, PRIMARY KEY
+    </text>
+    
+    <line x1="470" y1="205" x2="730" y2="205" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <!-- FK 1 -->
+    <text x="470" y="235" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#667eea">
+      🔗 id_actor
+    </text>
+    <text x="710" y="235" font-family="Courier New, monospace" font-size="12" fill="#666" text-anchor="end">
+      FK
+    </text>
+    
+    <line x1="470" y1="245" x2="730" y2="245" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="490" y="265" font-family="Courier New, monospace" font-size="12" fill="#555">
+      INTEGER, NOT NULL
+    </text>
+    <text x="490" y="282" font-family="Courier New, monospace" font-size="11" fill="#667eea">
+      REFERENCES actores
+    </text>
+    
+    <line x1="470" y1="295" x2="730" y2="295" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <!-- FK 2 -->
+    <text x="470" y="325" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#667eea">
+      🔗 id_teleserie
+    </text>
+    <text x="710" y="325" font-family="Courier New, monospace" font-size="12" fill="#666" text-anchor="end">
+      FK
+    </text>
+    
+    <line x1="470" y1="335" x2="730" y2="335" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="490" y="355" font-family="Courier New, monospace" font-size="12" fill="#555">
+      INTEGER, NOT NULL
+    </text>
+    <text x="490" y="372" font-family="Courier New, monospace" font-size="11" fill="#667eea">
+      REFERENCES teleseries
+    </text>
+    
+    <line x1="470" y1="385" x2="730" y2="385" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <!-- Otros campos -->
+    <text x="470" y="410" font-family="Courier New, monospace" font-size="13" fill="#333">
+      ✅ protagonico
+    </text>
+    <text x="710" y="410" font-family="Courier New, monospace" font-size="11" fill="#666" text-anchor="end">
+      BOOLEAN
+    </text>
+    
+    <line x1="470" y1="420" x2="730" y2="420" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="470" y="445" font-family="Courier New, monospace" font-size="13" fill="#333">
+      💰 sueldo
+    </text>
+    <text x="710" y="445" font-family="Courier New, monospace" font-size="11" fill="#666" text-anchor="end">
+      INTEGER
+    </text>
+    
+    <line x1="470" y1="455" x2="730" y2="455" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="470" y="480" font-family="Courier New, monospace" font-size="13" fill="#333">
+      🔢 cantidad
+    </text>
+    <text x="710" y="480" font-family="Courier New, monospace" font-size="11" fill="#666" text-anchor="end">
+      INTEGER
+    </text>
+    
+    <line x1="470" y1="490" x2="730" y2="490" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="600" y="510" font-family="Courier New, monospace" font-size="11" fill="#764ba2" text-anchor="middle">
+      🔒 UNIQUE(id_actor, id_teleserie)
+    </text>
+  </g>
+  
+  <!-- TABLA TELESERIES -->
+  <g filter="url(#shadow)">
+    <!-- Fondo de la tabla -->
+    <rect x="850" y="120" width="300" height="320" fill="url(#gradientTable)" stroke="#667eea" stroke-width="3" rx="8"/>
+    
+    <!-- Encabezado -->
+    <rect x="850" y="120" width="300" height="50" fill="url(#gradientHeader)" rx="8"/>
+    <rect x="850" y="145" width="300" height="25" fill="url(#gradientHeader)"/>
+    
+    <text x="1000" y="152" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      📺 TELESERIES
+    </text>
+    
+    <!-- Campos -->
+    <text x="870" y="200" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      🔑 id_teleserie
+    </text>
+    <text x="1110" y="200" font-family="Courier New, monospace" font-size="12" fill="#666" text-anchor="end">
+      PK
+    </text>
+    
+    <line x1="870" y1="210" x2="1130" y2="210" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="890" y="235" font-family="Courier New, monospace" font-size="13" fill="#555">
+      SERIAL
+    </text>
+    
+    <text x="890" y="255" font-family="Courier New, monospace" font-size="13" fill="#555">
+      PRIMARY KEY
+    </text>
+    
+    <line x1="870" y1="270" x2="1130" y2="270" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <text x="870" y="300" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      📝 nombre
+    </text>
+    
+    <line x1="870" y1="310" x2="1130" y2="310" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="890" y="335" font-family="Courier New, monospace" font-size="13" fill="#555">
+      VARCHAR(255)
+    </text>
+    
+    <text x="890" y="355" font-family="Courier New, monospace" font-size="13" fill="#555">
+      NOT NULL, UNIQUE
+    </text>
+    
+    <line x1="870" y1="370" x2="1130" y2="370" stroke="#e0e0e0" stroke-width="2"/>
+    
+    <text x="870" y="400" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333">
+      📊 tipo_medicion
+    </text>
+    
+    <line x1="870" y1="410" x2="1130" y2="410" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <text x="890" y="430" font-family="Courier New, monospace" font-size="13" fill="#555">
+      VARCHAR(50)
+    </text>
+    
+    <!-- Cardinalidad -->
+    <text x="1000" y="460" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#667eea" text-anchor="middle">
+      1
+    </text>
+  </g>
+  
+  <!-- RELACIONES -->
+  <!-- Línea de ACTORES a REPARTO_ACTORES -->
+  <line x1="350" y1="280" x2="450" y2="280" stroke="#667eea" stroke-width="3" marker-end="url(#arrowblue)"/>
+  <text x="365" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#667eea">
+    N
+  </text>
+  
+  <!-- Línea de TELESERIES a REPARTO_ACTORES -->
+  <line x1="850" y1="280" x2="750" y2="280" stroke="#667eea" stroke-width="3" marker-end="url(#arrowblue)"/>
+  <text x="825" y="270" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#667eea">
+    N
+  </text>
+  
+  <!-- Flechas -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#667eea" />
+    </marker>
+  </defs>
+  
+  <!-- Leyenda -->
+  <g>
+    <rect x="400" y="545" width="400" height="45" fill="#ffffff" stroke="#667eea" stroke-width="2" rx="6" filter="url(#shadow)"/>
+    <text x="600" y="570" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">
+      Relación N:M (Muchos a Muchos)
+    </text>
+    <text x="600" y="587" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">
+      Un actor puede estar en muchas teleseries • Una teleserie puede tener muchos actores
+    </text>
+  </g>
+</svg>
